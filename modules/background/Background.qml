@@ -14,13 +14,11 @@ Variants {
         name: "background"
         WlrLayershell.exclusionMode: ExclusionMode.Ignore
         WlrLayershell.layer: WlrLayer.Background
-        color: "black"
+        color: "transparent"
 
         anchors.top: true
         anchors.bottom: true
         anchors.left: true
         anchors.right: true
-
-        Wallpaper {}
     }
 }
