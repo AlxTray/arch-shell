@@ -29,7 +29,7 @@ Variants {
             screen: scope.modelData
             name: "drawers"
             WlrLayershell.exclusionMode: ExclusionMode.Ignore
-            WlrLayershell.keyboardFocus: visibilities.launcher || visibilities.session ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+            WlrLayershell.keyboardFocus: visibilities.session ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
 
             mask: Region {
                 x: bar.implicitWidth
@@ -63,10 +63,9 @@ Variants {
             }
 
             HyprlandFocusGrab {
-                active: visibilities.launcher || visibilities.session
+                active: visibilities.session
                 windows: [win]
                 onCleared: {
-                    visibilities.launcher = false;
                     visibilities.session = false;
                 }
             }
@@ -110,7 +109,6 @@ Variants {
                 property bool bar
                 property bool osd
                 property bool session
-                property bool launcher
                 property bool dashboard
                 property bool utilities
 

@@ -3,7 +3,6 @@ import "root:/config"
 import "root:/modules/osd" as Osd
 import "root:/modules/notifications" as Notifications
 import "root:/modules/session" as Session
-import "root:/modules/launcher" as Launcher
 import "root:/modules/dashboard" as Dashboard
 import "root:/modules/bar/popouts" as BarPopouts
 import "root:/modules/utilities" as Utilities
@@ -20,7 +19,6 @@ Item {
     readonly property Osd.Wrapper osd: osd
     readonly property Notifications.Wrapper notifications: notifications
     readonly property Session.Wrapper session: session
-    readonly property Launcher.Wrapper launcher: launcher
     readonly property Dashboard.Wrapper dashboard: dashboard
     readonly property BarPopouts.Wrapper popouts: popouts
     readonly property Utilities.Wrapper utilities: utilities
@@ -58,15 +56,6 @@ Item {
 
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-    }
-
-    Launcher.Wrapper {
-        id: launcher
-
-        visibilities: root.visibilities
-
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
     }
 
     Dashboard.Wrapper {

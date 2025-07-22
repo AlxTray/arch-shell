@@ -34,11 +34,6 @@ Column {
                 if (root.visibilities.session)
                     logout.focus = true;
             }
-
-            function onLauncherChanged(): void {
-                if (root.visibilities.session && !root.visibilities.launcher)
-                    logout.focus = true;
-            }
         }
     }
 

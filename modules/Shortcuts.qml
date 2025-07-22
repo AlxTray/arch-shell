@@ -6,14 +6,12 @@ import Quickshell.Io
 Scope {
     id: root
 
-    property bool launcherInterrupted
-
     CustomShortcut {
         name: "showall"
-        description: "Toggle launcher, dashboard and osd"
+        description: "Toggle dashboard, osd, and utilities"
         onPressed: {
             const v = Visibilities.getForActive();
-            v.launcher = v.dashboard = v.osd = v.utilities = !(v.launcher || v.dashboard || v.osd || v.utilities);
+            v.dashboard = v.osd = v.utilities = !(v.dashboard || v.osd || v.utilities);
         }
     }
 
@@ -24,25 +22,6 @@ Scope {
             const visibilities = Visibilities.getForActive();
             visibilities.session = !visibilities.session;
         }
-    }
-
-    CustomShortcut {
-        name: "launcher"
-        description: "Toggle launcher"
-        onPressed: root.launcherInterrupted = false
-        onReleased: {
-            if (!root.launcherInterrupted) {
-                const visibilities = Visibilities.getForActive();
-                visibilities.launcher = !visibilities.launcher;
-            }
-            root.launcherInterrupted = false;
-        }
-    }
-
-    CustomShortcut {
-        name: "launcherInterrupt"
-        description: "Interrupt launcher keybind"
-        onPressed: root.launcherInterrupted = true
     }
 
     IpcHandler {

@@ -3,7 +3,6 @@ import "root:/config"
 import "root:/modules/osd" as Osd
 import "root:/modules/notifications" as Notifications
 import "root:/modules/session" as Session
-import "root:/modules/launcher" as Launcher
 import "root:/modules/dashboard" as Dashboard
 import "root:/modules/bar/popouts" as BarPopouts
 import "root:/modules/utilities" as Utilities
@@ -41,13 +40,6 @@ Shape {
 
         startX: root.width
         startY: (root.height - wrapper.height) / 2 - rounding
-    }
-
-    Launcher.Background {
-        wrapper: panels.launcher
-
-        startX: (root.width - wrapper.width) / 2 - rounding
-        startY: root.height
     }
 
     Dashboard.Background {

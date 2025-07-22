@@ -107,15 +107,6 @@ MouseArea {
                 visibilities.session = false;
         }
 
-        // Show/hide launcher on drag
-        if (pressed && inBottomPanel(panels.launcher, dragStart.x, dragStart.y) && withinPanelWidth(panels.launcher, x, y)) {
-            const dragY = y - dragStart.y;
-            if (dragY < -Config.launcher.dragThreshold)
-                visibilities.launcher = true;
-            else if (dragY > Config.launcher.dragThreshold)
-                visibilities.launcher = false;
-        }
-
         // Show dashboard on hover
         const showDashboard = inTopPanel(panels.dashboard, x, y);
 
@@ -154,27 +145,6 @@ MouseArea {
     // Monitor individual visibility changes
     Connections {
         target: root.visibilities
-
-        function onLauncherChanged() {
-            // If launcher is hidden, clear shortcut flags for dashboard and OSD
-            if (!root.visibilities.launcher) {
-                root.dashboardShortcutActive = false;
-                root.osdShortcutActive = false;
-                root.utilitiesShortcutActive = false;
-
-                // Also hide dashboard and OSD if they're not being hovered
-                const inDashboardArea = root.inTopPanel(root.panels.dashboard, root.mouseX, root.mouseY);
-                const inOsdArea = root.inRightPanel(root.panels.osd, root.mouseX, root.mouseY);
-
-                if (!inDashboardArea) {
-                    root.visibilities.dashboard = false;
-                }
-                if (!inOsdArea) {
-                    root.visibilities.osd = false;
-                    root.osdHovered = false;
-                }
-            }
-        }
 
         function onDashboardChanged() {
             if (root.visibilities.dashboard) {

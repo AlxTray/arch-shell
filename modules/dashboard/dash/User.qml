@@ -46,7 +46,6 @@ Row {
             hoverEnabled: true
 
             onClicked: {
-                root.visibilities.launcher = false;
                 root.state.facePicker.open();
             }
 
