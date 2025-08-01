@@ -66,6 +66,11 @@ g++ -std=c++17 -Wall -Wextra -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 
 sudo mv beat_detector /usr/lib/caelestia/beat_detector
 ```
 
+> [!TIP]
+> The beat detector can actually be installed anywhere. However, if it is not installed to the default
+> location of `/usr/lib/caelestia/beat_detector`, you must set the environment variable `CAELESTIA_BD_PATH`
+> to wherever you have installed the beat detector.
+
 ## Usage
 
 The shell can be started via the `caelestia shell -d` command or `qs -c caelestia`.
@@ -146,10 +151,21 @@ All configuration options are in `~/.config/caelestia/shell.json`.
 
 ```json
 {
+    "background": {
+        "enabled": true
+    },
     "bar": {
         "dragThreshold": 20,
+        "externalAudioProgram": ["pavucontrol"],
         "persistent": true,
         "showOnHover": true,
+        "status": {
+            "showAudio": false,
+            "showBattery": true,
+            "showBluetooth": true,
+            "showKbLayout": false,
+            "showNetwork": true
+        },
         "workspaces": {
             "activeIndicator": true,
             "activeLabel": "󰮯 ",
@@ -168,16 +184,22 @@ All configuration options are in `~/.config/caelestia/shell.json`.
     },
     "dashboard": {
         "mediaUpdateInterval": 500,
-        "visualiserBars": 45,
-        "weatherLocation": "10,10",
-        "useFahrenheit": false,
+        "visualiserBars": 45
     },
     "launcher": {
         "actionPrefix": ">",
         "dragThreshold": 50,
+        "vimKeybinds": false,
         "enableDangerousActions": false,
         "maxShown": 8,
-        "maxWallpapers": 9
+        "maxWallpapers": 9,
+        "useFuzzy": {
+            "apps": false,
+            "actions": false,
+            "schemes": false,
+            "variants": false,
+            "wallpapers": false
+        }
     },
     "lock": {
         "maxNotifs": 5
@@ -197,8 +219,20 @@ All configuration options are in `~/.config/caelestia/shell.json`.
         "sessionGif": "root:/assets/kurukuru.gif",
         "wallpaperDir": "~/Pictures/Wallpapers"
     },
+    "services": {
+      "weatherLocation": "10,10",
+      "useFahrenheit": false,
+      "useTwelveHourClock": false
+    },
     "session": {
-        "dragThreshold": 30
+        "dragThreshold": 30,
+        "vimKeybinds": false,
+        "commands": {
+            "logout": ["loginctl", "terminate-user", ""],
+            "shutdown": ["systemctl", "poweroff"],
+            "hibernate": ["systemctl", "hibernate"],
+            "reboot": ["systemctl", "reboot"]
+        }
     }
 }
 ```

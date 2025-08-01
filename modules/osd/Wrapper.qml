@@ -1,5 +1,5 @@
-import "root:/services"
-import "root:/config"
+import qs.services
+import qs.config
 import Quickshell
 import QtQuick
 
@@ -15,7 +15,7 @@ Item {
 
     states: State {
         name: "visible"
-        when: root.visibility
+        when: root.visibility && Config.osd.enabled
 
         PropertyChanges {
             root.implicitWidth: content.implicitWidth

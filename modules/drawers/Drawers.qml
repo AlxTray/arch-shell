@@ -1,9 +1,9 @@
 pragma ComponentBehavior: Bound
 
-import "root:/widgets"
-import "root:/services"
-import "root:/config"
-import "root:/modules/bar"
+import qs.widgets
+import qs.services
+import qs.config
+import qs.modules.bar
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
@@ -63,7 +63,7 @@ Variants {
             }
 
             HyprlandFocusGrab {
-                active: visibilities.session
+                active: visibilities.session && Config.session.enabled
                 windows: [win]
                 onCleared: {
                     visibilities.session = false;
@@ -72,7 +72,7 @@ Variants {
 
             StyledRect {
                 anchors.fill: parent
-                opacity: visibilities.session ? 0.5 : 0
+                opacity: visibilities.session && Config.session.enabled ? 0.5 : 0
                 color: Colours.palette.m3scrim
 
                 Behavior on opacity {
@@ -112,7 +112,7 @@ Variants {
                 property bool dashboard
                 property bool utilities
 
-                Component.onCompleted: Visibilities.screens[scope.modelData] = this
+                Component.onCompleted: Visibilities.load(scope.modelData, this)
             }
 
             Interactions {

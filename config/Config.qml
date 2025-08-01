@@ -1,20 +1,23 @@
 pragma Singleton
 
-import "root:/utils"
+import qs.utils
 import Quickshell
 import Quickshell.Io
 
 Singleton {
     id: root
 
+    property alias background: adapter.background
     property alias bar: adapter.bar
     property alias border: adapter.border
     property alias dashboard: adapter.dashboard
+    property alias dcontent: adapter.dcontent
     property alias notifs: adapter.notifs
     property alias osd: adapter.osd
     property alias session: adapter.session
     property alias winfo: adapter.winfo
     property alias lock: adapter.lock
+    property alias services: adapter.services
     property alias paths: adapter.paths
 
     FileView {
@@ -26,15 +29,18 @@ Singleton {
         JsonAdapter {
             id: adapter
 
-            property JsonObject bar: BarConfig {}
-            property JsonObject border: BorderConfig {}
-            property JsonObject dashboard: DashboardConfig {}
-            property JsonObject notifs: NotifsConfig {}
-            property JsonObject osd: OsdConfig {}
-            property JsonObject session: SessionConfig {}
-            property JsonObject winfo: WInfoConfig {}
-            property JsonObject lock: LockConfig {}
-            property JsonObject paths: UserPaths {}
+            property BackgroundConfig background: BackgroundConfig {}
+            property BarConfig bar: BarConfig {}
+            property BorderConfig border: BorderConfig {}
+            property DashboardConfig dashboard: DashboardConfig {}
+            property DContentConfig dcontent: DContentConfig {}
+            property NotifsConfig notifs: NotifsConfig {}
+            property OsdConfig osd: OsdConfig {}
+            property SessionConfig session: SessionConfig {}
+            property WInfoConfig winfo: WInfoConfig {}
+            property LockConfig lock: LockConfig {}
+            property ServiceConfig services: ServiceConfig {}
+            property UserPaths paths: UserPaths {}
         }
     }
 }

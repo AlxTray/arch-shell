@@ -1,14 +1,19 @@
-import "root:/widgets"
+import qs.widgets
+import qs.config
 import Quickshell
 import Quickshell.Wayland
+import QtQuick
 
-Variants {
-    model: Quickshell.screens
+LazyLoader {
+    active: Config.background.enabled
 
-    StyledWindow {
-        id: win
+    Variants {
+        model: Quickshell.screens
 
-        required property ShellScreen modelData
+        StyledWindow {
+            id: win
+
+            required property ShellScreen modelData
 
         screen: modelData
         name: "background"
@@ -16,9 +21,23 @@ Variants {
         WlrLayershell.layer: WlrLayer.Background
         color: "transparent"
 
-        anchors.top: true
-        anchors.bottom: true
-        anchors.left: true
-        anchors.right: true
+            anchors.top: true
+            anchors.bottom: true
+            anchors.left: true
+            anchors.right: true
+
+            Wallpaper {}
+
+            Loader {
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.margins: Appearance.padding.large
+
+                active: Config.background.desktopClock.enabled
+                asynchronous: true
+
+                source: "DesktopClock.qml"
+            }
+        }
     }
 }
