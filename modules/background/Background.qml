@@ -26,8 +26,6 @@ LazyLoader {
             anchors.left: true
             anchors.right: true
 
-            Wallpaper {}
-
             Loader {
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
